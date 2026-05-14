@@ -9,7 +9,6 @@ import { Logo } from "./Logo";
 import { navGroups } from "./nav-data";
 import { MegaMenu } from "./MegaMenu";
 import { MobileNav } from "./MobileNav";
-import { ButtonLink } from "@/components/ui/Button";
 import { SITE } from "@/lib/seo";
 
 export function Navbar() {
@@ -52,11 +51,11 @@ export function Navbar() {
       style={{ background, backdropFilter, borderBottomColor, borderBottomWidth: "1px" }}
       className="fixed inset-x-0 top-0 z-40 text-white"
     >
-      <div className="mx-auto flex h-16 max-w-[1400px] items-center gap-6 px-5 sm:px-6 lg:px-8">
+      <div className="mx-auto flex h-[80px] max-w-[1400px] items-center gap-8 px-6 lg:px-10">
         <Logo />
 
-        <nav className="ml-4 hidden flex-1 lg:flex" aria-label="Primary">
-          <ul className="flex items-center gap-1">
+        <nav className="hidden flex-1 lg:flex" aria-label="Primary">
+          <ul className="flex items-center gap-2">
             {navGroups.map((g) => {
               const hasMega = !!g.mega;
               const isActive = openKey === g.label;
@@ -70,10 +69,10 @@ export function Navbar() {
                   <Link
                     href={g.href}
                     className={cn(
-                      "inline-flex items-center gap-1 rounded-md px-3 py-2 text-[14px] font-medium transition-colors",
-                      "text-white/90 hover:bg-white/[0.08] hover:text-white",
-                      isActive && "text-white bg-white/[0.06]",
-                      g.label === "Andaman" && "text-gold hover:text-gold/90",
+                      "relative inline-flex items-center gap-1.5 rounded-full px-4 py-2 text-[15px] font-medium transition-all duration-300",
+                      "text-white/90 hover:bg-white/10 hover:text-white hover:backdrop-blur-md",
+                      isActive && "text-white bg-white/15 backdrop-blur-md shadow-[inset_0_1px_1px_rgba(255,255,255,0.1)]",
+                      g.label === "Andaman" && "text-gold hover:text-gold",
                     )}
                     onFocus={() => hasMega && openMenu(g.label)}
                   >
@@ -96,25 +95,20 @@ export function Navbar() {
           </ul>
         </nav>
 
-        <div className="ml-auto flex items-center gap-3">
+        <div className="ml-auto flex items-center gap-5">
           <a
             href={`tel:${SITE.phone.replace(/\s/g, "")}`}
-            className="hidden items-center gap-1.5 rounded-md px-2 py-1 text-[12px] text-white/70 transition-colors hover:text-white sm:inline-flex"
+            className="hidden items-center gap-2 text-[13px] font-medium text-white/70 transition-colors hover:text-white sm:inline-flex"
           >
-            <Phone className="h-3.5 w-3.5" aria-hidden />
-            <span>Talk to a specialist</span>
+            <Phone className="h-4 w-4" aria-hidden />
+            <span>{SITE.phone}</span>
           </a>
-          <ButtonLink
+          <Link
             href="/contact"
-            variant="outline-light"
-            size="sm"
-            className="hidden sm:inline-flex"
+            className="hidden lg:inline-flex items-center justify-center rounded-full bg-white text-navy px-7 py-2.5 text-[12px] font-bold tracking-[0.1em] uppercase transition-all duration-500 hover:bg-gold hover:text-white shadow-[0_0_20px_rgba(255,255,255,0.15)] hover:shadow-[0_0_30px_rgba(197,160,89,0.4)] hover:-translate-y-0.5"
           >
-            Enquire
-          </ButtonLink>
-          <ButtonLink href="/contact" size="sm" className="hidden lg:inline-flex">
             Plan My Journey
-          </ButtonLink>
+          </Link>
           <MobileNav />
         </div>
       </div>

@@ -41,26 +41,27 @@ export default async function InternationalListingPage() {
 
   return (
     <>
-      <section className="bg-cream pt-8 pb-12">
+      <section className="bg-cream pt-8 pb-12 lg:pt-16 lg:pb-20">
         <Container>
           <Breadcrumb items={breadcrumbs} />
-          <div className="mt-8 grid gap-10 lg:grid-cols-[1.4fr,1fr] lg:items-end">
+          <div className="mt-12 grid gap-12 lg:grid-cols-[1.2fr,1fr] lg:items-center">
             <div>
-              <p className="text-label uppercase text-teal">International</p>
-              <h1 className="mt-3 font-display text-[clamp(2rem,4.5vw,3.25rem)] leading-[1.05] tracking-tight text-balance text-ink">
+              <p className="text-[12px] font-bold uppercase tracking-[0.2em] text-teal">International</p>
+              <h1 className="mt-4 font-display text-[clamp(2.5rem,5vw,4.5rem)] leading-[1.05] tracking-tight text-balance text-ink">
                 A globe, edited — to the few routes worth the flight.
               </h1>
-              <p className="mt-5 max-w-2xl text-[16px] leading-relaxed text-ink-secondary">
+              <p className="mt-6 max-w-xl text-[17px] leading-relaxed text-ink-secondary text-pretty">
                 {tours.length} curated international itineraries across {Array.from(new Set(tours.map(t => t.destination))).length} destinations. From a quiet
                 Kyoto-Hakone route to a private overwater sanctuary in Baa Atoll — every journey is designed by
                 a destination specialist who has walked it themselves.
               </p>
             </div>
-            <div className="relative aspect-[5/3] overflow-hidden rounded-xl">
+            <div className="relative aspect-[4/3] w-full overflow-hidden rounded-[24px] shadow-[0_8px_30px_rgba(0,0,0,0.06)]">
               <Image
                 src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=1600&q=85"
                 alt="A Kyoto evening — one of our specialists' favourite routes"
                 fill
+                priority
                 sizes="(min-width: 1024px) 40vw, 90vw"
                 className="object-cover"
               />

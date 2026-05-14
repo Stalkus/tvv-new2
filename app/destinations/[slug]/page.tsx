@@ -4,10 +4,11 @@ import { Container } from "@/components/ui/Container";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { Section, SectionHeader } from "@/components/ui/Section";
 import { PackageCard } from "@/components/cards/PackageCard";
-import { ButtonLink } from "@/components/ui/Button";
 import { ConciergeCTA } from "@/components/sections/ConciergeCTA";
 import { JsonLd } from "@/components/ui/JsonLd";
 import { CardRail, CardRailItem } from "@/components/sections/CardRail";
+import { StickyCTA } from "@/components/ui/StickyCTA";
+import { FadeUp, FadeUpItem } from "@/components/ui/FadeUp";
 import { destinationsService, packagesService } from "@/lib/services";
 import { destinationsMock } from "@/lib/mock";
 import { buildMetadata, breadcrumbJsonLd, SITE } from "@/lib/seo";
@@ -61,37 +62,42 @@ export default async function DestinationPage({ params }: { params: Promise<{ sl
 
   return (
     <>
-      <section className="relative isolate overflow-hidden bg-navy text-white">
+      <StickyCTA label={`Plan my ${dest.name}`} href={`/contact?destination=${dest.slug}`} />
+      
+      <section className="relative isolate flex min-h-[70vh] lg:min-h-[85vh] flex-col justify-end overflow-hidden bg-navy text-white pb-16 lg:pb-32 pt-32">
         <div className="absolute inset-0 -z-10">
           <Image src={dest.heroImage ?? dest.image} alt="" fill priority sizes="100vw" className="object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-b from-navy/70 via-navy/55 to-navy/95" />
+          <div className="absolute inset-0 bg-gradient-to-t from-navy via-navy/60 to-navy/30 backdrop-blur-sm" />
         </div>
         <Container>
-          <div className="pt-8">
+          <div className="absolute top-24 lg:top-32 left-6 lg:left-10">
             <Breadcrumb items={breadcrumbs} invert />
           </div>
-          <div className="max-w-2xl pb-16 pt-8 sm:pb-24 sm:pt-12">
-            <p className="text-label uppercase text-gold">{dest.continent ?? "Destination"}</p>
-            <h1 className="mt-3 font-display text-[clamp(2.25rem,5vw,3.75rem)] leading-tight tracking-tight text-balance">
-              {dest.name}
-            </h1>
-            <p className="mt-3 text-[17px] text-white/75">{dest.tagline}</p>
-            <p className="mt-5 max-w-xl text-[15px] leading-relaxed text-white/70">
-              Our specialists know {dest.name} well — its hidden afternoons, its overrated postcards, and the
-              properties worth the splurge. Below: a working shelf of journeys, plus a way to design your own.
-            </p>
-            <div className="mt-7 flex flex-wrap gap-3">
-              <ButtonLink href={`/contact?destination=${dest.slug}`} size="lg" className="px-7">Plan my {dest.name}</ButtonLink>
-              <ButtonLink href="/guides" variant="outline-light" size="lg" className="px-7">Read our {dest.name} guides</ButtonLink>
-            </div>
-            <p className="mt-8 inline-flex items-center gap-2 text-[13px] text-white/60">
-              Curated journeys from <span className="font-mono text-gold">{formatPriceShort(dest.startsFrom)}</span> per adult
-            </p>
-          </div>
+          <FadeUp stagger delay={0.2} className="max-w-3xl">
+            <FadeUpItem>
+              <p className="text-[13px] font-bold uppercase tracking-[0.2em] text-gold">{dest.continent ?? "Destination"}</p>
+            </FadeUpItem>
+            <FadeUpItem>
+              <h1 className="mt-4 font-display text-[clamp(3rem,8vw,6rem)] leading-[0.95] tracking-tight text-balance">
+                {dest.name}.
+              </h1>
+            </FadeUpItem>
+            <FadeUpItem>
+              <p className="mt-8 max-w-xl text-[18px] leading-relaxed text-white/80 text-pretty">
+                Our specialists know {dest.name} well — its hidden afternoons, its overrated postcards, and the
+                properties worth the splurge. Below: a working shelf of journeys, plus a way to design your own.
+              </p>
+            </FadeUpItem>
+            <FadeUpItem>
+              <p className="mt-8 inline-flex items-center gap-2 text-[12px] uppercase tracking-widest text-white/60">
+                Curated journeys from <span className="font-medium text-gold">{formatPriceShort(dest.startsFrom)}</span> per adult
+              </p>
+            </FadeUpItem>
+          </FadeUp>
         </Container>
       </section>
 
-      <Section tone="cream" pad="default">
+      <Section tone="cream" className="py-24 lg:py-32">
         <Container>
           <SectionHeader
             eyebrow={`${dest.name} journeys`}
@@ -100,13 +106,15 @@ export default async function DestinationPage({ params }: { params: Promise<{ sl
             viewAllHref={dest.region === "international" ? "/packages/international" : "/packages/domestic"}
             viewAllLabel="Browse all"
           />
-          <CardRail>
-            {tours.map((t) => (
-              <CardRailItem key={t.slug}>
-                <PackageCard data={t} />
-              </CardRailItem>
-            ))}
-          </CardRail>
+          <div className="mt-16">
+            <CardRail>
+              {tours.map((t) => (
+                <CardRailItem key={t.slug}>
+                  <PackageCard data={t} />
+                </CardRailItem>
+              ))}
+            </CardRail>
+          </div>
         </Container>
       </Section>
 

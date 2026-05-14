@@ -20,9 +20,9 @@ export function EditorialGuides({ guides }: EditorialGuidesProps) {
           viewAllHref="/guides"
           viewAllLabel="All guides"
         />
-        <div className="grid gap-10 lg:grid-cols-[1.4fr,1fr]">
+        <div className="grid gap-16 lg:grid-cols-[1.6fr,1fr] lg:gap-24">
           <GuideCard guide={hero} variant="feature" />
-          <div className="grid gap-8">
+          <div className="flex flex-col gap-10">
             {rest.slice(0, 3).map((g) => (
               <GuideCard key={g.slug} guide={g} />
             ))}

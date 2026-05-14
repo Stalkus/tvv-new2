@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { cn } from "@/lib/utils";
+import { motion } from "framer-motion";
 
 export interface ChipOption {
   label: string;
@@ -29,7 +30,7 @@ export function FilterChips({
       role="tablist"
       aria-label={ariaLabel}
       className={cn(
-        "flex w-full gap-2 overflow-x-auto scroll-rail py-1 -mx-1 px-1",
+        "flex w-full gap-2 overflow-x-auto scroll-rail",
         className,
       )}
     >
@@ -46,13 +47,20 @@ export function FilterChips({
               onChange?.(o.value);
             }}
             className={cn(
-              "shrink-0 h-[34px] px-4 rounded-pill text-[12px] font-medium transition-colors duration-fast",
+              "relative shrink-0 px-4 py-2 text-[14px] font-medium transition-colors duration-300",
               isActive
-                ? "bg-teal text-white"
-                : "bg-white text-ink-secondary border border-line hover:bg-teal-light hover:text-teal hover:border-teal-light",
+                ? "text-teal"
+                : "text-ink-secondary hover:text-ink",
             )}
           >
             {o.label}
+            {isActive && (
+              <motion.div
+                layoutId="activeFilterIndicator"
+                className="absolute inset-x-0 bottom-0 h-0.5 bg-teal"
+                transition={{ type: "spring", stiffness: 300, damping: 30 }}
+              />
+            )}
           </button>
         );
       })}

@@ -43,7 +43,7 @@ export function FeaturedJourneys({ packages }: FeaturedJourneysProps) {
           viewAllLabel="View all itineraries"
         />
 
-        <div className="mb-8">
+        <div className="mb-12 border-b border-line">
           <FilterChips options={filters} defaultValue="all" onChange={setFilter} ariaLabel="Filter featured journeys" />
         </div>
 

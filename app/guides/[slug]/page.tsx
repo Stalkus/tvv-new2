@@ -87,7 +87,7 @@ export default async function GuideDetailPage({ params }: { params: Promise<{ sl
             </FadeUpItem>
           </FadeUp>
         </Container>
-      </section>
+      </HeroSection>
 
       <Section tone="cream" className="py-24 lg:py-32">
         <Container size="narrow">

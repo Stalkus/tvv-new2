@@ -76,8 +76,8 @@ const config: Config = {
       },
       boxShadow: {
         card: "0 8px 30px rgba(0,0,0,0.04)",
-        hover: "0 20px 40px rgba(0,0,0,0.08)",
-        modal: "0 24px 64px rgba(0,0,0,0.12)",
+        hover: "0 20px 40px rgba(0,0,0,0.06)",
+        modal: "0 24px 64px rgba(0,0,0,0.1)",
         nav: "0 1px 0 rgba(0,0,0,0.04)",
       },
       spacing: {

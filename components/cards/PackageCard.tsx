@@ -87,8 +87,10 @@ export function PackageCard({
           </div>
         )}
         
-        {/* Dark overlay for top contrast */}
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/20" />
+        {/* Soft, premium gradient overlay for top contrast */}
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-navy/60 via-transparent to-navy/30 mix-blend-multiply" />
+        {/* Secondary overlay for text legibility without muddying colors */}
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-transparent" />
 
         <div className="absolute left-4 top-4 flex flex-col items-start gap-2 z-10">
           {hasFlights && (

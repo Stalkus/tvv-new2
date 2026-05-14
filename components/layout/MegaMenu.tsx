@@ -25,10 +25,11 @@ export function MegaMenu({ group, open, onMouseEnter, onMouseLeave }: Props) {
           animate={{ opacity: 1, y: 0, scale: 1 }}
           exit={{ opacity: 0, y: 8, scale: 0.98 }}
           transition={{ type: "spring", damping: 25, stiffness: 200 }}
-          className="absolute left-1/2 top-[80px] z-50 w-[min(1100px,calc(100vw-48px))] -translate-x-1/2 overflow-hidden rounded-[24px] border border-white/40 bg-white/95 backdrop-blur-3xl shadow-[0_24px_64px_rgba(0,0,0,0.1)]"
+          className="absolute left-0 top-[80px] z-50 flex w-full justify-center px-6 pointer-events-none"
           role="region"
           aria-label={`${group.label} menu`}
         >
+          <div className="pointer-events-auto w-full max-w-[1100px] overflow-hidden rounded-[24px] border border-white/40 bg-white/95 backdrop-blur-3xl shadow-[0_24px_64px_rgba(0,0,0,0.1)]">
           <div className="flex flex-col lg:flex-row">
             {/* Columns Section */}
             <div className="flex-1 p-10 lg:p-14">
@@ -84,6 +85,7 @@ export function MegaMenu({ group, open, onMouseEnter, onMouseLeave }: Props) {
                 </div>
               </div>
             )}
+          </div>
           </div>
         </motion.div>
       )}

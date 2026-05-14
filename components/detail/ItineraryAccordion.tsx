@@ -7,48 +7,47 @@ interface Props {
 
 export function ItineraryAccordion({ days }: Props) {
   return (
-    <ol className="space-y-3">
+    <div className="border-t border-line/40">
       {days.map((d, i) => (
-        <li
+        <details
           key={d.day}
-          className="overflow-hidden rounded-lg border border-line bg-white"
+          open={i === 0}
+          className="group border-b border-line/40 bg-white transition-colors hover:bg-cream/20"
         >
-          <details open={i === 0} className="group">
-            <summary className="flex cursor-pointer items-center gap-5 px-6 py-5 [&::-webkit-details-marker]:hidden">
-              <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-teal-light font-mono text-[13px] font-bold text-teal">
-                {String(d.day).padStart(2, "0")}
-              </span>
-              <div className="min-w-0 flex-1">
-                <p className="text-label uppercase text-ink-muted">Day {d.day}</p>
-                <p className="mt-1 font-display text-[17px] text-ink">{d.title}</p>
-              </div>
-              <span className="hidden items-center gap-1.5 text-[12px] text-ink-muted sm:inline-flex">
-                <MapPin className="h-3 w-3" aria-hidden /> {d.city}
-              </span>
-              <span
-                aria-hidden
-                className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-line text-ink-muted transition-transform duration-base group-open:rotate-45"
-              >+</span>
-            </summary>
-            <div className="space-y-3 px-6 pb-6 pl-[5.25rem]">
-              <p className="text-[14px] leading-relaxed text-ink-secondary">{d.description}</p>
-              <div className="flex flex-wrap gap-x-6 gap-y-2 text-[12px] text-ink-secondary">
-                {d.stay && (
-                  <span className="inline-flex items-center gap-1.5">
-                    <Moon className="h-3.5 w-3.5 text-teal" aria-hidden /> Stay: {d.stay}
-                  </span>
-                )}
-                {d.meals && (
-                  <span className="inline-flex items-center gap-1.5">
-                    <Sunrise className="h-3.5 w-3.5 text-teal" aria-hidden /> {d.meals}
-                  </span>
-                )}
-              </div>
+          <summary className="flex cursor-pointer items-start lg:items-center gap-6 py-6 px-2 lg:px-6 [&::-webkit-details-marker]:hidden">
+            <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-teal/5 font-display text-[18px] text-teal">
+              {String(d.day).padStart(2, "0")}
+            </span>
+            <div className="min-w-0 flex-1">
+              <p className="text-[11px] font-bold uppercase tracking-[0.15em] text-ink-muted">Day {d.day}</p>
+              <p className="mt-1 font-display text-[22px] leading-snug text-ink">{d.title}</p>
             </div>
-          </details>
-        </li>
+            <span className="hidden items-center gap-2 text-[13px] font-medium tracking-wide text-ink-secondary sm:inline-flex">
+              <MapPin className="h-3.5 w-3.5 text-teal" aria-hidden /> {d.city}
+            </span>
+            <span
+              aria-hidden
+              className="ml-auto inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-line/60 text-ink-muted transition-transform duration-300 group-open:rotate-45"
+            >+</span>
+          </summary>
+          <div className="space-y-4 px-2 pb-8 pl-[5rem] lg:px-6 lg:pl-[6.5rem]">
+            <p className="max-w-3xl text-[16px] leading-[1.8] text-ink-secondary text-pretty">{d.description}</p>
+            <div className="flex flex-wrap gap-x-8 gap-y-3 pt-2 text-[13px] font-medium text-ink-secondary">
+              {d.stay && (
+                <span className="inline-flex items-center gap-2">
+                  <Moon className="h-4 w-4 text-teal" aria-hidden /> Stay: {d.stay}
+                </span>
+              )}
+              {d.meals && (
+                <span className="inline-flex items-center gap-2">
+                  <Sunrise className="h-4 w-4 text-teal" aria-hidden /> {d.meals}
+                </span>
+              )}
+            </div>
+          </div>
+        </details>
       ))}
-    </ol>
+    </div>
   );
 }
 

@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { MessageCircle, Phone, ShieldCheck, ArrowRight } from "lucide-react";
+import { MessageCircle, Phone, ArrowRight, CheckCircle2 } from "lucide-react";
 import { formatINR } from "@/lib/utils";
 import { SITE } from "@/lib/seo";
 
@@ -21,37 +21,37 @@ export function StickyPriceCard({ tourSlug, tourTitle, priceCurrent, priceOrigin
   )}`;
 
   return (
-    <aside className="overflow-hidden rounded-xl border border-line bg-white shadow-card">
-      <div className="border-b border-line p-6">
+    <aside className="overflow-hidden rounded-[24px] border border-line/40 bg-white/80 backdrop-blur-xl shadow-[0_20px_40px_rgba(0,0,0,0.06)]">
+      <div className="p-8 pb-6">
         {priceOriginal && (
-          <p className="font-mono text-[13px] text-danger line-through">{formatINR(priceOriginal)}</p>
+          <p className="font-mono text-[13px] text-danger/80 line-through mb-1">{formatINR(priceOriginal)}</p>
         )}
-        <p className="font-mono text-[28px] font-bold leading-none text-teal">
+        <p className="font-display text-[40px] leading-none tracking-tight text-ink">
           {formatINR(priceCurrent)}
-          <span className="ml-1.5 align-baseline text-[12px] font-normal text-ink-muted">/Adult</span>
+          <span className="ml-2 align-baseline text-[13px] font-sans font-medium tracking-wide text-ink-muted uppercase">/ Adult</span>
         </p>
         {saved > 0 && (
-          <p className="mt-2 inline-flex items-center rounded-sm bg-success-bg px-2 py-0.5 text-[11px] font-medium text-success">
-            save {formatINR(saved)} per adult
+          <p className="mt-3 inline-flex items-center rounded-full bg-teal/10 px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-teal">
+            Save {formatINR(saved)} per adult
           </p>
         )}
       </div>
 
-      <div className="space-y-4 p-6">
-        <div>
-          <label htmlFor="pax" className="mb-2 block text-label uppercase text-ink-secondary">Travellers</label>
-          <div className="inline-flex h-10 items-center rounded-md border border-line bg-white">
+      <div className="space-y-5 px-8 pb-8">
+        <div className="rounded-xl border border-line/60 bg-white p-2">
+          <label htmlFor="pax" className="block px-2 pt-1 text-[10px] font-bold uppercase tracking-widest text-ink-muted">Travellers</label>
+          <div className="flex h-10 items-center justify-between">
             <button
               type="button"
               onClick={() => setPax(Math.max(1, pax - 1))}
-              className="h-full w-10 text-ink-secondary hover:bg-surface"
+              className="flex h-full w-10 items-center justify-center text-ink-secondary transition-colors hover:text-ink"
               aria-label="Decrease travellers"
             >−</button>
-            <span id="pax" className="w-12 text-center font-mono text-[14px]">{pax}</span>
+            <span id="pax" className="font-mono text-[15px] font-medium text-ink">{pax}</span>
             <button
               type="button"
               onClick={() => setPax(Math.min(20, pax + 1))}
-              className="h-full w-10 text-ink-secondary hover:bg-surface"
+              className="flex h-full w-10 items-center justify-center text-ink-secondary transition-colors hover:text-ink"
               aria-label="Increase travellers"
             >+</button>
           </div>
@@ -59,30 +59,33 @@ export function StickyPriceCard({ tourSlug, tourTitle, priceCurrent, priceOrigin
 
         <Link
           href={`/contact?tour=${tourSlug}&pax=${pax}`}
-          className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-md bg-teal px-5 text-[14px] font-medium text-white transition-colors hover:bg-teal-hover"
+          className="group relative flex h-14 w-full items-center justify-center gap-2 rounded-full bg-teal px-6 text-[13px] font-bold uppercase tracking-widest text-white shadow-[0_8px_20px_rgba(14,99,92,0.2)] transition-all hover:-translate-y-0.5 hover:bg-teal-hover hover:shadow-[0_12px_24px_rgba(14,99,92,0.3)]"
         >
-          Request a callback <ArrowRight className="h-4 w-4" aria-hidden />
+          Request a Proposal <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" aria-hidden />
         </Link>
         <a
           href={whatsappHref}
           target="_blank"
           rel="noreferrer"
-          className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-md border border-line bg-white text-[14px] font-medium text-ink transition-colors hover:border-teal hover:text-teal"
+          className="flex h-14 w-full items-center justify-center gap-2 rounded-full border border-line/80 bg-white text-[13px] font-bold uppercase tracking-widest text-ink transition-all hover:border-teal hover:text-teal hover:bg-teal/5"
         >
-          <MessageCircle className="h-4 w-4" aria-hidden /> Enquire via WhatsApp
-        </a>
-        <a
-          href={`tel:${SITE.phone.replace(/\s/g, "")}`}
-          className="inline-flex h-10 w-full items-center justify-center gap-2 text-[13px] font-medium text-teal hover:text-teal-hover"
-        >
-          <Phone className="h-3.5 w-3.5" aria-hidden /> Or call {SITE.phone}
+          <MessageCircle className="h-4 w-4" aria-hidden /> WhatsApp Us
         </a>
       </div>
 
-      <div className="space-y-2.5 border-t border-line bg-surface p-5 text-[12px] text-ink-secondary">
-        <p className="flex items-start gap-2"><ShieldCheck className="mt-0.5 h-3.5 w-3.5 text-teal" aria-hidden /> No charge until you approve a written proposal.</p>
-        <p className="flex items-start gap-2"><ShieldCheck className="mt-0.5 h-3.5 w-3.5 text-teal" aria-hidden /> Specialist replies within four working hours.</p>
-        <p className="flex items-start gap-2"><ShieldCheck className="mt-0.5 h-3.5 w-3.5 text-teal" aria-hidden /> 24/7 concierge through your trip.</p>
+      <div className="border-t border-line/40 bg-cream/50 p-6 space-y-3">
+        <p className="flex items-start gap-3 text-[13px] font-medium text-ink-secondary">
+          <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-teal" aria-hidden /> 
+          <span className="leading-relaxed text-pretty">No charge until you approve a written proposal.</span>
+        </p>
+        <p className="flex items-start gap-3 text-[13px] font-medium text-ink-secondary">
+          <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-teal" aria-hidden /> 
+          <span className="leading-relaxed text-pretty">Specialist replies within four working hours.</span>
+        </p>
+        <p className="flex items-start gap-3 text-[13px] font-medium text-ink-secondary">
+          <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-teal" aria-hidden /> 
+          <span className="leading-relaxed text-pretty">24/7 dedicated concierge during travel.</span>
+        </p>
       </div>
     </aside>
   );

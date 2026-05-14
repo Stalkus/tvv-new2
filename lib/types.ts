@@ -24,6 +24,7 @@ export type {
   AndamanTileItem,
   Review,
   FAQ,
+  Package,
 } from "./models";
 
 import type { Package } from "./models";

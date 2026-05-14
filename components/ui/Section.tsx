@@ -1,6 +1,9 @@
+"use client";
+
 import { cn } from "@/lib/utils";
 import type { HTMLAttributes, ReactNode } from "react";
 import Link from "next/link";
+import { motion } from "framer-motion";
 
 interface SectionProps extends HTMLAttributes<HTMLElement> {
   tone?: "cream" | "white" | "surface" | "navy" | "gold-light";
@@ -49,7 +52,11 @@ export function SectionHeader({
   invert = false,
 }: SectionHeaderProps) {
   return (
-    <div
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-100px" }}
+      transition={{ duration: 0.8, ease: [0.22, 0.61, 0.36, 1] }}
       className={cn(
         "mb-10 flex flex-col gap-3",
         align === "center" && "items-center text-center",
@@ -101,6 +108,6 @@ export function SectionHeader({
           </span>
         </Link>
       )}
-    </div>
+    </motion.div>
   );
 }

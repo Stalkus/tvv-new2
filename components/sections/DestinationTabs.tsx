@@ -6,6 +6,7 @@ import { SectionHeader } from "@/components/ui/Section";
 import { DestinationCard } from "@/components/cards/DestinationCard";
 import type { Destination } from "@/lib/models";
 import { cn } from "@/lib/utils";
+import { motion, AnimatePresence } from "framer-motion";
 
 const tabs = [
   { label: "All", value: "all" },
@@ -39,7 +40,7 @@ export function DestinationTabs({ destinations }: DestinationTabsProps) {
   }, [active, destinations]);
 
   return (
-    <section className="bg-cream py-section">
+    <section className="bg-cream py-section overflow-hidden">
       <Container>
         <SectionHeader
           eyebrow="Curated Global Destinations"
@@ -49,7 +50,13 @@ export function DestinationTabs({ destinations }: DestinationTabsProps) {
           viewAllLabel="Browse all destinations"
         />
 
-        <div className="-mx-5 mb-8 overflow-x-auto scroll-rail px-5 sm:mx-0 sm:px-0">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="-mx-5 mb-8 overflow-x-auto scroll-rail px-5 sm:mx-0 sm:px-0"
+        >
           <div role="tablist" aria-label="Destination region" className="flex gap-2">
             {tabs.map((tab) => {
               const isActive = active === tab.value;
@@ -60,33 +67,62 @@ export function DestinationTabs({ destinations }: DestinationTabsProps) {
                   aria-selected={isActive}
                   onClick={() => setActive(tab.value)}
                   className={cn(
-                    "shrink-0 border-b-2 px-3 py-2 text-[14px] font-medium transition-colors",
+                    "relative shrink-0 px-4 py-2 text-[14px] font-medium transition-colors duration-300",
                     isActive
-                      ? "border-teal text-teal"
-                      : "border-transparent text-ink-secondary hover:text-ink",
+                      ? "text-teal"
+                      : "text-ink-secondary hover:text-ink",
                   )}
                 >
                   {tab.label}
+                  {isActive && (
+                    <motion.div
+                      layoutId="activeTabIndicator"
+                      className="absolute inset-x-0 bottom-0 h-0.5 bg-teal"
+                      transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                    />
+                  )}
                 </button>
               );
             })}
           </div>
-        </div>
+        </motion.div>
 
-        {filtered.length > 0 ? (
-          <div className="-mx-5 flex gap-5 overflow-x-auto scroll-rail px-5 pb-2 sm:mx-0 sm:px-0 sm:grid sm:grid-cols-2 sm:overflow-visible lg:grid-cols-4">
-            {filtered.slice(0, 8).map((d, i) => (
-              <DestinationCard
-                key={d.slug}
-                destination={d}
-                className="w-[240px] shrink-0 sm:w-auto"
-                priority={i < 2}
-              />
-            ))}
-          </div>
-        ) : (
-          <p className="text-ink-muted">No destinations in this region yet — check back soon.</p>
-        )}
+        <AnimatePresence mode="wait">
+          {filtered.length > 0 ? (
+            <motion.div 
+              key={active}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ staggerChildren: 0.1 }}
+              className="-mx-5 flex gap-5 overflow-x-auto scroll-rail px-5 pb-2 sm:mx-0 sm:px-0 sm:grid sm:grid-cols-2 sm:overflow-visible lg:grid-cols-4"
+            >
+              {filtered.slice(0, 8).map((d, i) => (
+                <motion.div
+                  key={d.slug}
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.7, ease: [0.22, 0.61, 0.36, 1] }}
+                  className="w-[240px] shrink-0 sm:w-auto"
+                >
+                  <DestinationCard
+                    destination={d}
+                    priority={i < 2}
+                  />
+                </motion.div>
+              ))}
+            </motion.div>
+          ) : (
+            <motion.p 
+              initial={{ opacity: 0 }} 
+              animate={{ opacity: 1 }} 
+              exit={{ opacity: 0 }}
+              className="text-ink-muted"
+            >
+              No destinations in this region yet — check back soon.
+            </motion.p>
+          )}
+        </AnimatePresence>
       </Container>
     </section>
   );

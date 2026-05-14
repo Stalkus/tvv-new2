@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { ChevronDown, Phone } from "lucide-react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { Logo } from "./Logo";
 import { navGroups } from "./nav-data";
@@ -14,6 +15,23 @@ import { SITE } from "@/lib/seo";
 export function Navbar() {
   const [openKey, setOpenKey] = useState<string | null>(null);
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  
+  const { scrollY } = useScroll();
+  const background = useTransform(
+    scrollY,
+    [0, 100],
+    ["rgba(10, 22, 40, 0)", "rgba(10, 22, 40, 0.85)"]
+  );
+  const backdropFilter = useTransform(
+    scrollY,
+    [0, 100],
+    ["blur(0px)", "blur(16px)"]
+  );
+  const borderBottomColor = useTransform(
+    scrollY,
+    [0, 100],
+    ["rgba(255, 255, 255, 0)", "rgba(255, 255, 255, 0.1)"]
+  );
 
   function scheduleClose() {
     if (closeTimer.current) clearTimeout(closeTimer.current);
@@ -30,7 +48,10 @@ export function Navbar() {
   useEffect(() => () => { if (closeTimer.current) clearTimeout(closeTimer.current); }, []);
 
   return (
-    <header className="sticky top-0 z-40 bg-navy text-white shadow-nav">
+    <motion.header 
+      style={{ background, backdropFilter, borderBottomColor, borderBottomWidth: "1px" }}
+      className="fixed inset-x-0 top-0 z-40 text-white"
+    >
       <div className="mx-auto flex h-16 max-w-[1400px] items-center gap-6 px-5 sm:px-6 lg:px-8">
         <Logo />
 
@@ -58,7 +79,7 @@ export function Navbar() {
                   >
                     {g.label}
                     {hasMega && (
-                      <ChevronDown className="h-3.5 w-3.5 opacity-70" aria-hidden />
+                      <ChevronDown className={cn("h-3.5 w-3.5 opacity-70 transition-transform duration-300", isActive && "rotate-180")} aria-hidden />
                     )}
                   </Link>
                   {hasMega && (
@@ -78,7 +99,7 @@ export function Navbar() {
         <div className="ml-auto flex items-center gap-3">
           <a
             href={`tel:${SITE.phone.replace(/\s/g, "")}`}
-            className="hidden items-center gap-1.5 rounded-md px-2 py-1 text-[12px] text-white/70 hover:text-white sm:inline-flex"
+            className="hidden items-center gap-1.5 rounded-md px-2 py-1 text-[12px] text-white/70 transition-colors hover:text-white sm:inline-flex"
           >
             <Phone className="h-3.5 w-3.5" aria-hidden />
             <span>Talk to a specialist</span>
@@ -97,6 +118,6 @@ export function Navbar() {
           <MobileNav />
         </div>
       </div>
-    </header>
+    </motion.header>
   );
 }

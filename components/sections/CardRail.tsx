@@ -47,8 +47,8 @@ export function CardRail({
       whileInView="visible"
       viewport={{ once: true, margin: "-50px" }}
       className={cn(
-        "-mx-5 flex gap-5 overflow-x-auto scroll-rail scroll-snap-x px-5 pb-3",
-        asGrid && "sm:mx-0 sm:overflow-visible sm:px-0 sm:grid sm:grid-cols-2 sm:scroll-snap-none lg:grid-cols-3 xl:grid-cols-4",
+        "-mx-6 flex gap-6 overflow-x-auto snap-x snap-mandatory px-6 pb-4 no-scrollbar",
+        asGrid && "sm:mx-0 sm:overflow-visible sm:px-0 sm:grid sm:grid-cols-2 sm:snap-none lg:grid-cols-3 xl:grid-cols-4",
         className,
       )}
     >
@@ -65,7 +65,7 @@ export function CardRailItem({
   className?: string;
 }) {
   return (
-    <motion.div variants={itemVariants} className={cn("w-[280px] shrink-0 scroll-snap-start sm:w-auto", className)}>
+    <motion.div variants={itemVariants} className={cn("w-[300px] shrink-0 snap-start sm:w-auto", className)}>
       {children}
     </motion.div>
   );

@@ -13,7 +13,7 @@ interface HeroSectionProps {
 export function HeroSection({ children, className, tall = false }: HeroSectionProps) {
   return (
     <section className={cn(
-      "relative isolate overflow-hidden bg-navy text-white",
+      "relative isolate overflow-hidden bg-navy text-white [&_h1]:text-white [&_h2]:text-white/90 [&_h3]:text-white/90",
       tall ? "flex min-h-[70vh] lg:min-h-[85vh] flex-col justify-end pb-16 pt-32 lg:pb-32" : "pt-28 pb-20 sm:pt-32 sm:pb-28 lg:pb-36",
       className
     )}>

@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import { Container } from "@/components/ui/Container";
-import { Breadcrumb } from "@/components/ui/Breadcrumb";
+import { HeroSection, HeroBackground, HeroBreadcrumb } from "@/components/ui/HeroLayout";
 import { Section } from "@/components/ui/Section";
 import { PackageListing } from "@/components/sections/PackageListing";
 import { ConciergeCTA } from "@/components/sections/ConciergeCTA";
@@ -86,29 +86,27 @@ export default async function RegionListingPage({ params }: { params: Promise<{ 
 
   return (
     <>
-      <section className="bg-cream pt-8 pb-12">
+      <HeroSection>
+        <HeroBackground src={r.image} alt={r.label} />
         <Container>
-          <Breadcrumb
+          <HeroBreadcrumb
             items={[
               { label: "Home", href: "/" },
               { label: "Packages", href: "/packages/domestic" },
               { label: r.label },
             ]}
           />
-          <div className="mt-8 grid gap-10 lg:grid-cols-[1.4fr,1fr] lg:items-end">
-            <div>
-              <p className="text-label uppercase text-teal">Domestic · {r.label}</p>
-              <h1 className="mt-3 font-display text-[clamp(2rem,4.5vw,3.25rem)] leading-[1.05] tracking-tight text-balance text-ink">
-                {r.label}, the way our specialists travel it.
-              </h1>
-              <p className="mt-5 max-w-2xl text-[16px] leading-relaxed text-ink-secondary">{r.description}</p>
-            </div>
-            <div className="relative aspect-[5/3] overflow-hidden rounded-xl">
-              <Image src={r.image} alt={r.label} fill sizes="(min-width:1024px) 40vw, 90vw" className="object-cover" />
-            </div>
+          <div className="max-w-2xl">
+            <p className="text-label uppercase text-gold drop-shadow-md">Domestic · {r.label}</p>
+            <h1 className="mt-3 font-display text-[clamp(2.5rem,5vw,4.5rem)] leading-[1.05] tracking-tight text-balance drop-shadow-lg">
+              {r.label}, the way our specialists travel it.
+            </h1>
+            <p className="mt-6 max-w-xl text-[17px] leading-relaxed text-white/90 text-pretty drop-shadow-md">
+              {r.description}
+            </p>
           </div>
         </Container>
-      </section>
+      </HeroSection>
 
       <TrustBar stats={trustRes.ok ? trustRes.data : []} />
 

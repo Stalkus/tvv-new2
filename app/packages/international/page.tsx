@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { Container } from "@/components/ui/Container";
-import { Breadcrumb } from "@/components/ui/Breadcrumb";
+import { HeroSection, HeroBackground, HeroBreadcrumb } from "@/components/ui/HeroLayout";
 import { PackageListing } from "@/components/sections/PackageListing";
 import { ConciergeCTA } from "@/components/sections/ConciergeCTA";
 import { TrustBar } from "@/components/sections/TrustBar";
@@ -41,34 +41,23 @@ export default async function InternationalListingPage() {
 
   return (
     <>
-      <section className="bg-cream pt-28 pb-12 lg:pt-32 lg:pb-20">
+      <HeroSection>
+        <HeroBackground src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=2400&q=85" />
         <Container>
-          <Breadcrumb items={breadcrumbs} />
-          <div className="mt-12 grid gap-12 lg:grid-cols-[1.2fr,1fr] lg:items-center">
-            <div>
-              <p className="text-[12px] font-bold uppercase tracking-[0.2em] text-teal">International</p>
-              <h1 className="mt-4 font-display text-[clamp(2.5rem,5vw,4.5rem)] leading-[1.05] tracking-tight text-balance text-ink">
-                A globe, edited — to the few routes worth the flight.
-              </h1>
-              <p className="mt-6 max-w-xl text-[17px] leading-relaxed text-ink-secondary text-pretty">
-                {tours.length} curated international itineraries across {Array.from(new Set(tours.map(t => t.destination))).length} destinations. From a quiet
-                Kyoto-Hakone route to a private overwater sanctuary in Baa Atoll — every journey is designed by
-                a destination specialist who has walked it themselves.
-              </p>
-            </div>
-            <div className="relative aspect-[4/3] w-full overflow-hidden rounded-[24px] shadow-[0_8px_30px_rgba(0,0,0,0.06)]">
-              <Image
-                src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=1600&q=85"
-                alt="A Kyoto evening — one of our specialists' favourite routes"
-                fill
-                priority
-                sizes="(min-width: 1024px) 40vw, 90vw"
-                className="object-cover"
-              />
-            </div>
+          <HeroBreadcrumb items={breadcrumbs} />
+          <div className="max-w-2xl">
+            <p className="text-label uppercase text-gold drop-shadow-md">International</p>
+            <h1 className="mt-4 font-display text-[clamp(2.5rem,5vw,4.5rem)] leading-[1.05] tracking-tight text-balance drop-shadow-lg">
+              A globe, edited — to the few routes worth the flight.
+            </h1>
+            <p className="mt-6 max-w-xl text-[17px] leading-relaxed text-white/90 text-pretty drop-shadow-md">
+              {tours.length} curated international itineraries across {Array.from(new Set(tours.map(t => t.destination))).length} destinations. From a quiet
+              Kyoto-Hakone route to a private overwater sanctuary in Baa Atoll — every journey is designed by
+              a destination specialist who has walked it themselves.
+            </p>
           </div>
         </Container>
-      </section>
+      </HeroSection>
 
       <TrustBar stats={trustRes.ok ? trustRes.data : []} />
 

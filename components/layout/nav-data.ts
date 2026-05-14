@@ -152,8 +152,6 @@ export const navGroups: NavGroup[] = [
       ],
     },
   },
-  { label: "Honeymoon", href: "/honeymoon" },
-  { label: "Luxury", href: "/luxury" },
   { label: "Flights", href: "/flights" },
   { label: "Guides", href: "/guides" },
 ];

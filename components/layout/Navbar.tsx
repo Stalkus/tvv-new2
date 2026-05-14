@@ -51,7 +51,7 @@ export function Navbar() {
       style={{ background, backdropFilter, borderBottomColor, borderBottomWidth: "1px" }}
       className="fixed inset-x-0 top-0 z-40 text-white"
     >
-      <div className="mx-auto flex h-[80px] max-w-[1400px] items-center gap-8 px-6 lg:px-10">
+      <div className="relative mx-auto flex h-[80px] max-w-[1400px] items-center gap-8 px-6 lg:px-10">
         <Logo />
 
         <nav className="hidden flex-1 lg:flex" aria-label="Primary">
@@ -62,7 +62,7 @@ export function Navbar() {
               return (
                 <li
                   key={g.label}
-                  className="relative"
+                  className="static"
                   onMouseEnter={() => hasMega && openMenu(g.label)}
                   onMouseLeave={scheduleClose}
                 >

@@ -1,8 +1,8 @@
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import { HeroSection, HeroBackground, HeroBreadcrumb } from "@/components/ui/HeroLayout";
 import { Container } from "@/components/ui/Container";
-import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { Section, SectionHeader } from "@/components/ui/Section";
 import { GuideCard } from "@/components/cards/GuideCard";
 import { ConciergeCTA } from "@/components/sections/ConciergeCTA";
@@ -49,38 +49,32 @@ export default async function GuideDetailPage({ params }: { params: Promise<{ sl
     <>
       <StickyCTA label={`Plan a ${guide.category} Journey`} href={`/contact?destination=${guide.category.toLowerCase()}`} />
       
-      <section className="relative isolate flex min-h-[70vh] lg:min-h-[85vh] flex-col justify-end overflow-hidden bg-navy text-white pb-16 lg:pb-32 pt-32">
-        <div className="absolute inset-0 -z-10">
-          <Image src={guide.image} alt="" fill priority sizes="100vw" className="object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-t from-navy via-navy/70 to-navy/30 backdrop-blur-sm" />
-        </div>
+      <HeroSection tall>
+        <HeroBackground src={guide.image} />
         <Container>
-          <div className="absolute top-24 lg:top-32 left-6 lg:left-10">
-            <Breadcrumb
-              items={[
-                { label: "Home", href: "/" },
-                { label: "Guides", href: "/guides" },
-                { label: guide.category, href: `/guides?category=${guide.category.toLowerCase()}` },
-                { label: guide.title },
-              ]}
-              invert
-            />
-          </div>
-          <FadeUp stagger delay={0.2} className="max-w-4xl">
+          <HeroBreadcrumb
+            absolute
+            items={[
+              { label: "Home", href: "/" },
+              { label: "Guides", href: "/guides" },
+              { label: guide.title },
+            ]}
+          />
+          <FadeUp stagger delay={0.2} className="max-w-3xl">
             <FadeUpItem>
-              <div className="flex items-center gap-3 text-[12px] font-bold uppercase tracking-[0.2em] text-gold">
-                <span>{guide.category}</span>
-                <span className="h-1 w-1 rounded-full bg-gold/50" />
-                <span>{guide.readTime} read</span>
+              <div className="flex items-center gap-4 text-[12px] uppercase tracking-widest text-gold drop-shadow-md">
+                <span className="font-bold">{guide.category}</span>
+                <span className="h-1 w-1 rounded-full bg-white/30" />
+                <span>{guide.readTime} min read</span>
               </div>
             </FadeUpItem>
             <FadeUpItem>
-              <h1 className="mt-6 font-display text-[clamp(2.5rem,6vw,4.5rem)] leading-[1.05] tracking-tight text-balance">
+              <h1 className="mt-4 font-display text-[clamp(2.5rem,6vw,4.5rem)] leading-tight tracking-tight text-balance drop-shadow-lg">
                 {guide.title}
               </h1>
             </FadeUpItem>
             <FadeUpItem>
-              <p className="mt-8 max-w-2xl text-[18px] leading-relaxed text-white/80 text-pretty">
+              <p className="mt-6 max-w-xl text-[18px] leading-relaxed text-white/90 drop-shadow-md">
                 {guide.excerpt}
               </p>
             </FadeUpItem>

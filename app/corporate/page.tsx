@@ -1,7 +1,7 @@
+import { HeroSection, HeroBackground, HeroBreadcrumb } from "@/components/ui/HeroLayout";
 import Image from "next/image";
 import { Building2, Users, Award, FileCheck } from "lucide-react";
 import { Container } from "@/components/ui/Container";
-import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { Section, SectionHeader } from "@/components/ui/Section";
 import { ConciergeCTA } from "@/components/sections/ConciergeCTA";
 import { ButtonLink } from "@/components/ui/Button";
@@ -39,28 +39,16 @@ const facts = [
 export default function CorporatePage() {
   return (
     <>
-      <section className="relative isolate overflow-hidden bg-navy text-white">
-        <div className="absolute inset-0 -z-10">
-          <Image
-            src="https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=2400&q=85"
-            alt=""
-            fill
-            priority
-            sizes="100vw"
-            className="object-cover opacity-45"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-navy/80 to-navy" />
-        </div>
+      <HeroSection>
+        <HeroBackground src="https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=2400&q=85" opacity={60} />
         <Container>
-          <div className="pt-8">
-            <Breadcrumb items={[{ label: "Home", href: "/" }, { label: "Corporate" }]} invert />
-          </div>
-          <div className="max-w-2xl pb-20 pt-8 sm:pb-28 sm:pt-14">
-            <p className="text-label uppercase text-gold">TVV Corporate · MICE</p>
-            <h1 className="mt-3 font-display text-[clamp(2.25rem,5vw,3.75rem)] leading-tight tracking-tight text-balance">
+          <HeroBreadcrumb items={[{ label: "Home", href: "/" }, { label: "Corporate" }]} />
+          <div className="max-w-2xl">
+            <p className="text-label uppercase text-gold drop-shadow-md">TVV Corporate · MICE</p>
+            <h1 className="mt-3 font-display text-[clamp(2.25rem,5vw,3.75rem)] leading-tight tracking-tight text-balance drop-shadow-lg">
               Corporate travel that runs the way your business does.
             </h1>
-            <p className="mt-5 max-w-xl text-[16px] leading-relaxed text-white/75">
+            <p className="mt-5 max-w-xl text-[16px] leading-relaxed text-white/90 drop-shadow-md">
               Offsites, incentive trips, conferences, dealer meets. One specialist, one timeline, in-house ground
               teams in our key destinations. No surprises, no escalation queue.
             </p>
@@ -83,7 +71,7 @@ export default function CorporatePage() {
             </dl>
           </div>
         </Container>
-      </section>
+      </HeroSection>
 
       <Section tone="cream" pad="default">
         <Container>

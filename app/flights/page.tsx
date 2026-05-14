@@ -1,6 +1,6 @@
+import { HeroSection, HeroBreadcrumb } from "@/components/ui/HeroLayout";
 import { Plane, Briefcase, Clock, ShieldCheck } from "lucide-react";
 import { Container } from "@/components/ui/Container";
-import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { Section, SectionHeader } from "@/components/ui/Section";
 import { ConciergeCTA } from "@/components/sections/ConciergeCTA";
 import { flightsService } from "@/lib/services";
@@ -46,17 +46,15 @@ export default async function FlightsPage() {
 
   return (
     <>
-      <section className="bg-navy text-white">
+      <HeroSection>
         <Container>
-          <div className="pt-8">
-            <Breadcrumb items={[{ label: "Home", href: "/" }, { label: "Flights" }]} invert />
-          </div>
-          <div className="max-w-3xl pb-16 pt-8 sm:pb-20 sm:pt-12">
-            <p className="text-label uppercase text-gold">Flights · Specialist-booked</p>
-            <h1 className="mt-3 font-display text-[clamp(2.25rem,5vw,3.75rem)] leading-tight tracking-tight text-balance">
+          <HeroBreadcrumb items={[{ label: "Home", href: "/" }, { label: "Flights" }]} />
+          <div className="max-w-3xl">
+            <p className="text-label uppercase text-gold drop-shadow-md">Flights · Specialist-booked</p>
+            <h1 className="mt-3 font-display text-[clamp(2.25rem,5vw,3.75rem)] leading-tight tracking-tight text-balance drop-shadow-lg">
               Flights, the way a specialist would book them.
             </h1>
-            <p className="mt-5 max-w-xl text-[16px] leading-relaxed text-white/75">
+            <p className="mt-5 max-w-xl text-[16px] leading-relaxed text-white/90 drop-shadow-md">
               No comparison aggregators, no banner ads. Tell us where you're going — we'll send a fare brief
               (economy, premium-economy, business) with seats, baggage, refundability, and the trade-offs
               clearly written out.
@@ -107,7 +105,7 @@ export default async function FlightsPage() {
             </form>
           </div>
         </Container>
-      </section>
+      </HeroSection>
 
       {sample.length > 0 && (
         <Section tone="cream" pad="default">

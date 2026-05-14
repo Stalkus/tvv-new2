@@ -61,10 +61,9 @@ export function Hero() {
       </AnimatePresence>
 
       {/* Layered Gradient Overlays for Depth and Readability */}
-      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-navy/60 via-navy/10 to-navy/95" />
-      <div className="absolute inset-0 -z-10 bg-gradient-to-t from-navy/95 via-transparent to-transparent" />
-      <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_center,transparent_0%,rgba(10,22,40,0.5)_100%)]" />
-      <div className="grain absolute inset-0 -z-10 opacity-40" aria-hidden />
+      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-navy/90 via-navy/50 to-navy/95" />
+      <div className="absolute inset-0 -z-10 bg-gradient-to-t from-navy via-navy/60 to-transparent" />
+      <div className="grain absolute inset-0 -z-10 opacity-35" aria-hidden />
 
       <div className="relative z-10 flex w-full max-w-[1400px] flex-col items-center px-5 pt-32 pb-24 text-center sm:px-6 lg:px-8">
         

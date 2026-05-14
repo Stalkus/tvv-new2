@@ -1,8 +1,8 @@
+import { HeroSection, HeroBackground, HeroBreadcrumb } from "@/components/ui/HeroLayout";
 import Image from "next/image";
 import { ArrowRight, Anchor, MapPin, Compass } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { Section, SectionHeader } from "@/components/ui/Section";
-import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { ButtonLink } from "@/components/ui/Button";
 import { PackageCard } from "@/components/cards/PackageCard";
 import { AndamanTile } from "@/components/cards/AndamanTile";
@@ -101,31 +101,17 @@ export default async function AndamanHubPage() {
 
   return (
     <>
-      <section className="relative isolate overflow-hidden bg-navy text-white">
-        <div className="absolute inset-0 -z-10">
-          <Image
-            src="https://images.unsplash.com/photo-1559128010-7c1ad6e1b6a5?auto=format&fit=crop&w=2400&q=85"
-            alt=""
-            fill
-            priority
-            sizes="100vw"
-            className="object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-navy/70 via-navy/65 to-navy/95" />
-          <div className="absolute inset-0 bg-gradient-to-r from-navy/80 via-navy/30 to-transparent" />
-        </div>
-        <div className="grain absolute inset-0 -z-10" aria-hidden />
+      <HeroSection>
+        <HeroBackground src="https://images.unsplash.com/photo-1559128010-7c1ad6e1b6a5?auto=format&fit=crop&w=2400&q=85" />
 
         <Container>
-          <div className="pt-10">
-            <Breadcrumb items={breadcrumbs} invert />
-          </div>
-          <div className="max-w-3xl pb-20 pt-10 sm:pb-28 sm:pt-14 lg:pb-36">
-            <p className="text-label uppercase text-gold">TVV signature · Since 2008</p>
-            <h1 className="mt-4 font-display text-[clamp(2.5rem,6vw,4.5rem)] leading-[1.02] tracking-tight text-balance">
+          <HeroBreadcrumb items={breadcrumbs} />
+          <div className="max-w-3xl">
+            <p className="text-label uppercase text-gold drop-shadow-md">TVV signature · Since 2008</p>
+            <h1 className="mt-4 font-display text-[clamp(2.5rem,6vw,4.5rem)] leading-[1.02] tracking-tight text-balance drop-shadow-lg">
               The Andamans, the way <span className="text-gold/90">we know them.</span>
             </h1>
-            <p className="mt-6 max-w-2xl text-[17px] leading-relaxed text-white/75 text-pretty">
+            <p className="mt-6 max-w-2xl text-[17px] leading-relaxed text-white/90 text-pretty drop-shadow-md">
               We run our own ground operations across Port Blair, Havelock, and Neil — which means
               your ferries are confirmed, your villas are vetted, and your specialist is reachable when
               the network drops. This is our home shelf.
@@ -147,14 +133,14 @@ export default async function AndamanHubPage() {
                 { v: "24/7", l: "Ground concierge" },
               ].map((s) => (
                 <div key={s.l}>
-                  <dt className="font-display text-[26px] font-bold text-white">{s.v}</dt>
-                  <dd className="text-[12px] text-white/55">{s.l}</dd>
+                  <dt className="font-display text-[26px] font-bold text-white drop-shadow-md">{s.v}</dt>
+                  <dd className="text-[12px] text-white/80 drop-shadow-md">{s.l}</dd>
                 </div>
               ))}
             </dl>
           </div>
         </Container>
-      </section>
+      </HeroSection>
 
       {spotlight.length > 0 && (
         <Section tone="cream" pad="default">

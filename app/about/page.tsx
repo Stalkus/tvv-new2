@@ -1,6 +1,6 @@
+import { HeroSection, HeroBackground, HeroBreadcrumb } from "@/components/ui/HeroLayout";
 import Image from "next/image";
 import { Container } from "@/components/ui/Container";
-import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { Section, SectionHeader } from "@/components/ui/Section";
 import { ConciergeCTA } from "@/components/sections/ConciergeCTA";
 import { buildMetadata } from "@/lib/seo";
@@ -42,34 +42,22 @@ const milestones = [
 export default function AboutPage() {
   return (
     <>
-      <section className="relative isolate overflow-hidden bg-navy text-white">
-        <div className="absolute inset-0 -z-10">
-          <Image
-            src="https://images.unsplash.com/photo-1559128010-7c1ad6e1b6a5?auto=format&fit=crop&w=2400&q=85"
-            alt=""
-            fill
-            priority
-            sizes="100vw"
-            className="object-cover opacity-50"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-navy/80 to-navy" />
-        </div>
+      <HeroSection>
+        <HeroBackground src="https://images.unsplash.com/photo-1559128010-7c1ad6e1b6a5?auto=format&fit=crop&w=2400&q=85" opacity={60} />
         <Container>
-          <div className="pt-8">
-            <Breadcrumb items={[{ label: "Home", href: "/" }, { label: "About" }]} invert />
-          </div>
-          <div className="max-w-3xl pb-24 pt-10 sm:pb-28 sm:pt-16">
-            <p className="text-label uppercase text-gold">About TVV</p>
-            <h1 className="mt-4 font-display text-[clamp(2.25rem,5vw,3.75rem)] leading-tight tracking-tight text-balance">
+          <HeroBreadcrumb items={[{ label: "Home", href: "/" }, { label: "About" }]} />
+          <div className="max-w-3xl">
+            <p className="text-label uppercase text-gold drop-shadow-md">About TVV</p>
+            <h1 className="mt-4 font-display text-[clamp(2.25rem,5vw,3.75rem)] leading-tight tracking-tight text-balance drop-shadow-lg">
               A small house. <span className="block text-gold/90">Carefully run.</span>
             </h1>
-            <p className="mt-6 max-w-2xl text-[17px] leading-relaxed text-white/75">
+            <p className="mt-6 max-w-2xl text-[17px] leading-relaxed text-white/90 drop-shadow-md">
               The Vacation Voice was founded in 2008 as an Andaman-only travel specialist. Eighteen years later,
               we curate journeys across India and to 65+ destinations worldwide — and the Andamans is still home.
             </p>
           </div>
         </Container>
-      </section>
+      </HeroSection>
 
       <Section tone="cream" pad="default">
         <Container size="default">

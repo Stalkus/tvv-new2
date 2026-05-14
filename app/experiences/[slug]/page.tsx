@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { notFound } from "next/navigation";
+import { HeroSection, HeroBackground, HeroBreadcrumb } from "@/components/ui/HeroLayout";
 import { Container } from "@/components/ui/Container";
-import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { Section, SectionHeader } from "@/components/ui/Section";
 import { PackageCard } from "@/components/cards/PackageCard";
 import { ConciergeCTA } from "@/components/sections/ConciergeCTA";
@@ -50,39 +50,34 @@ export default async function ExperienceDetailPage({ params }: { params: Promise
     <>
       <StickyCTA label={`Plan a ${exp.title} Journey`} href={`/contact?experience=${exp.slug}`} />
       
-      <section className="relative isolate flex min-h-[70vh] lg:min-h-[85vh] flex-col justify-end overflow-hidden bg-navy text-white pb-16 lg:pb-32 pt-32">
-        <div className="absolute inset-0 -z-10">
-          <Image src={exp.image} alt="" fill priority sizes="100vw" className="object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-t from-navy via-navy/60 to-navy/30 backdrop-blur-sm" />
-        </div>
+      <HeroSection tall>
+        <HeroBackground src={exp.image} />
         <Container>
-          <div className="absolute top-24 lg:top-32 left-6 lg:left-10">
-            <Breadcrumb
-              items={[
-                { label: "Home", href: "/" },
-                { label: "Experiences", href: "/experiences" },
-                { label: exp.title },
-              ]}
-              invert
-            />
-          </div>
+          <HeroBreadcrumb
+            absolute
+            items={[
+              { label: "Home", href: "/" },
+              { label: "Experiences", href: "/experiences" },
+              { label: exp.title },
+            ]}
+          />
           <FadeUp stagger delay={0.2} className="max-w-3xl">
             <FadeUpItem>
-              <p className="text-[13px] font-bold uppercase tracking-[0.2em] text-gold">By experience</p>
+              <p className="text-[13px] font-bold uppercase tracking-[0.2em] text-gold drop-shadow-md">Curated Experience</p>
             </FadeUpItem>
             <FadeUpItem>
-              <h1 className="mt-4 font-display text-[clamp(3rem,8vw,6rem)] leading-[0.95] tracking-tight text-balance">
+              <h1 className="mt-4 font-display text-[clamp(3rem,8vw,6rem)] leading-[0.95] tracking-tight text-balance drop-shadow-lg">
                 {exp.title}.
               </h1>
             </FadeUpItem>
             <FadeUpItem>
-              <p className="mt-8 max-w-xl text-[18px] leading-relaxed text-white/80 text-pretty">
+              <p className="mt-8 max-w-xl text-[18px] leading-relaxed text-white/90 text-pretty drop-shadow-md">
                 {exp.description}
               </p>
             </FadeUpItem>
           </FadeUp>
         </Container>
-      </section>
+      </HeroSection>
 
       <Section tone="cream" className="py-24 lg:py-32">
         <Container>

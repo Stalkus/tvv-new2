@@ -1,7 +1,7 @@
+import { HeroSection, HeroBackground, HeroBreadcrumb } from "@/components/ui/HeroLayout";
 import Image from "next/image";
 import { Heart, Sparkles, Lock, Mail } from "lucide-react";
 import { Container } from "@/components/ui/Container";
-import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { Section, SectionHeader } from "@/components/ui/Section";
 import { ButtonLink } from "@/components/ui/Button";
 import { PackageCard } from "@/components/cards/PackageCard";
@@ -58,28 +58,16 @@ export default async function HoneymoonPage() {
 
   return (
     <>
-      <section className="relative isolate overflow-hidden bg-navy text-white">
-        <div className="absolute inset-0 -z-10">
-          <Image
-            src="https://images.unsplash.com/photo-1540202404-1b927e27fa8b?auto=format&fit=crop&w=2400&q=85"
-            alt=""
-            fill
-            priority
-            sizes="100vw"
-            className="object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-navy/65 via-navy/55 to-navy/95" />
-        </div>
+      <HeroSection>
+        <HeroBackground src="https://images.unsplash.com/photo-1540202404-1b927e27fa8b?auto=format&fit=crop&w=2400&q=85" />
         <Container>
-          <div className="pt-8">
-            <Breadcrumb items={[{ label: "Home", href: "/" }, { label: "Honeymoon" }]} invert />
-          </div>
-          <div className="max-w-2xl pb-20 pt-8 sm:pb-28 sm:pt-14">
-            <p className="text-label uppercase text-gold">Honeymoon escapes</p>
-            <h1 className="mt-3 font-display text-[clamp(2.25rem,5vw,3.75rem)] leading-tight tracking-tight text-balance">
+          <HeroBreadcrumb items={[{ label: "Home", href: "/" }, { label: "Honeymoon" }]} />
+          <div className="max-w-2xl">
+            <p className="text-label uppercase text-gold drop-shadow-md">Honeymoon escapes</p>
+            <h1 className="mt-3 font-display text-[clamp(2.25rem,5vw,3.75rem)] leading-tight tracking-tight text-balance drop-shadow-lg">
               A quiet beginning. <span className="block text-gold/90">Considered, not curated.</span>
             </h1>
-            <p className="mt-6 max-w-xl text-[16px] leading-relaxed text-white/75">
+            <p className="mt-6 max-w-xl text-[16px] leading-relaxed text-white/90 drop-shadow-md">
               Honeymoon journeys designed by people who plan honeymoons every week — not a generic luxury package
               with a couple's photo on it. Private villas, private experiences, and a specialist who knows the
               difference between quiet and empty.
@@ -90,7 +78,7 @@ export default async function HoneymoonPage() {
             </div>
           </div>
         </Container>
-      </section>
+      </HeroSection>
 
       <Section tone="cream" pad="default">
         <Container>

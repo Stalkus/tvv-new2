@@ -92,7 +92,7 @@ export default async function TourDetailPage({ params }: { params: Promise<{ slu
 
   return (
     <>
-      <section className="bg-cream pt-6 pb-12 lg:pt-10 lg:pb-24">
+      <section className="bg-cream pt-28 pb-12 lg:pt-32 lg:pb-24">
         <Container>
           <Breadcrumb items={breadcrumbs} />
           <div className="mt-8 lg:mt-12">

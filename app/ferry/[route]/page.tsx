@@ -1,8 +1,8 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import { HeroSection, HeroBreadcrumb } from "@/components/ui/HeroLayout";
 import { ArrowRight, Clock, Anchor } from "lucide-react";
 import { Container } from "@/components/ui/Container";
-import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { Section, SectionHeader } from "@/components/ui/Section";
 import { ButtonLink } from "@/components/ui/Button";
 import { ConciergeCTA } from "@/components/sections/ConciergeCTA";
@@ -56,22 +56,20 @@ export default async function FerryRoutePage({ params }: { params: Promise<{ rou
 
   return (
     <>
-      <section className="bg-navy text-white">
+      <HeroSection>
         <Container>
-          <div className="pt-8">
-            <Breadcrumb items={breadcrumbs} invert />
-          </div>
-          <div className="max-w-3xl pb-16 pt-8 sm:pb-20 sm:pt-12">
-            <p className="text-label uppercase text-gold">Andaman ferry route</p>
-            <h1 className="mt-3 font-display text-[clamp(2rem,4.5vw,3.25rem)] leading-tight tracking-tight text-balance">
+          <HeroBreadcrumb items={breadcrumbs} />
+          <div className="max-w-3xl">
+            <p className="text-label uppercase text-gold drop-shadow-md">Andaman ferry route</p>
+            <h1 className="mt-3 font-display text-[clamp(2rem,4.5vw,3.25rem)] leading-tight tracking-tight text-balance drop-shadow-lg">
               {r.from.name} <ArrowRight className="mx-3 inline h-7 w-7 text-gold align-middle" aria-hidden /> {r.to.name}
             </h1>
-            <p className="mt-5 max-w-2xl text-[15px] leading-relaxed text-white/75">
+            <p className="mt-5 max-w-2xl text-[15px] leading-relaxed text-white/90 drop-shadow-md">
               {schedules.length > 0
                 ? `${schedules.length} daily departures across ${r.operators.length} operators. Crossing time ranges roughly ${Math.min(...schedules.map((s) => s.durationMinutes))}–${Math.max(...schedules.map((s) => s.durationMinutes))} minutes.`
                 : `${r.operators.length} operators serve this route. Average crossing time ~${r.averageCrossingMinutes} minutes.`}
             </p>
-            <div className="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-[13px] text-white/65">
+            <div className="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-[13px] text-white/80 drop-shadow-md">
               <span className="inline-flex items-center gap-1.5"><Clock className="h-3.5 w-3.5 text-gold" aria-hidden /> ~{r.averageCrossingMinutes} min</span>
               <span className="inline-flex items-center gap-1.5"><Anchor className="h-3.5 w-3.5 text-gold" aria-hidden /> From <span className="font-mono text-gold">{formatPriceShort(r.startingPrice)}</span></span>
             </div>
@@ -81,7 +79,7 @@ export default async function FerryRoutePage({ params }: { params: Promise<{ rou
             </div>
           </div>
         </Container>
-      </section>
+      </HeroSection>
 
       <Section tone="cream" pad="default">
         <Container>

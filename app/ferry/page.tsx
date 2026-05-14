@@ -1,8 +1,8 @@
+import { HeroSection, HeroBackground, HeroBreadcrumb } from "@/components/ui/HeroLayout";
 import Image from "next/image";
 import Link from "next/link";
 import { Anchor, Clock, ShieldCheck, ChevronRight } from "lucide-react";
 import { Container } from "@/components/ui/Container";
-import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { Section, SectionHeader } from "@/components/ui/Section";
 import { ConciergeCTA } from "@/components/sections/ConciergeCTA";
 import { ferryService } from "@/lib/services";
@@ -62,35 +62,23 @@ export default async function FerryPage() {
 
   return (
     <>
-      <section className="relative isolate overflow-hidden bg-navy text-white">
-        <div className="absolute inset-0 -z-10">
-          <Image
-            src="https://images.unsplash.com/photo-1506929562872-bb421503ef21?auto=format&fit=crop&w=2400&q=85"
-            alt=""
-            fill
-            priority
-            sizes="100vw"
-            className="object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-navy/65 to-navy/95" />
-        </div>
+      <HeroSection>
+        <HeroBackground src="https://images.unsplash.com/photo-1506929562872-bb421503ef21?auto=format&fit=crop&w=2400&q=85" />
         <Container>
-          <div className="pt-8">
-            <Breadcrumb items={[{ label: "Home", href: "/" }, { label: "Andaman", href: "/andaman" }, { label: "Ferry booking" }]} invert />
-          </div>
-          <div className="max-w-2xl pb-20 pt-8 sm:pb-28 sm:pt-14">
-            <p className="text-label uppercase text-gold">Andaman ferries · Same-day confirmation</p>
-            <h1 className="mt-3 font-display text-[clamp(2.25rem,5vw,3.75rem)] leading-tight tracking-tight text-balance">
+          <HeroBreadcrumb items={[{ label: "Home", href: "/" }, { label: "Andaman", href: "/andaman" }, { label: "Ferry booking" }]} />
+          <div className="max-w-2xl">
+            <p className="text-label uppercase text-gold drop-shadow-md">Andaman ferries · Same-day confirmation</p>
+            <h1 className="mt-3 font-display text-[clamp(2.25rem,5vw,3.75rem)] leading-tight tracking-tight text-balance drop-shadow-lg">
               Confirmed ferry seats — every operator, every route.
             </h1>
-            <p className="mt-5 max-w-xl text-[16px] leading-relaxed text-white/75">
+            <p className="mt-5 max-w-xl text-[16px] leading-relaxed text-white/90 drop-shadow-md">
               We hold inventory on Makruzz, Green Ocean, and ITT. Hotel transfers, boarding assistance,
               and ferry-day specialist support are included on every booking.
             </p>
 
             <form action="/ferry/search" className="mt-8 grid gap-3 rounded-xl border border-white/15 bg-white/[0.05] p-4 backdrop-blur-md sm:grid-cols-[1fr,1fr,1fr,auto]" aria-label="Ferry search">
               <div>
-                <label htmlFor="from" className="block text-[11px] uppercase tracking-[0.1em] text-white/55">From</label>
+                <label htmlFor="from" className="block text-[11px] uppercase tracking-[0.1em] text-white/55 drop-shadow-md">From</label>
                 <select id="from" name="from" className="mt-1.5 h-10 w-full rounded-md border border-white/15 bg-white/[0.06] px-3 text-[14px] text-white outline-none focus:border-teal">
                   <option className="text-ink" value="PB">Port Blair</option>
                   <option className="text-ink" value="HV">Havelock</option>
@@ -98,7 +86,7 @@ export default async function FerryPage() {
                 </select>
               </div>
               <div>
-                <label htmlFor="to" className="block text-[11px] uppercase tracking-[0.1em] text-white/55">To</label>
+                <label htmlFor="to" className="block text-[11px] uppercase tracking-[0.1em] text-white/55 drop-shadow-md">To</label>
                 <select id="to" name="to" className="mt-1.5 h-10 w-full rounded-md border border-white/15 bg-white/[0.06] px-3 text-[14px] text-white outline-none focus:border-teal">
                   <option className="text-ink" value="HV">Havelock</option>
                   <option className="text-ink" value="NL">Neil</option>
@@ -106,7 +94,7 @@ export default async function FerryPage() {
                 </select>
               </div>
               <div>
-                <label htmlFor="date" className="block text-[11px] uppercase tracking-[0.1em] text-white/55">Date</label>
+                <label htmlFor="date" className="block text-[11px] uppercase tracking-[0.1em] text-white/55 drop-shadow-md">Date</label>
                 <input id="date" name="date" type="date" className="mt-1.5 h-10 w-full rounded-md border border-white/15 bg-white/[0.06] px-3 text-[14px] text-white outline-none focus:border-teal" />
               </div>
               <div className="flex items-end">
@@ -117,7 +105,7 @@ export default async function FerryPage() {
             </form>
           </div>
         </Container>
-      </section>
+      </HeroSection>
 
       <Section tone="cream" pad="default">
         <Container>

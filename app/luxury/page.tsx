@@ -1,7 +1,7 @@
+import { HeroSection, HeroBackground, HeroBreadcrumb } from "@/components/ui/HeroLayout";
 import Image from "next/image";
 import { Gem, Shield, Users, KeyRound } from "lucide-react";
 import { Container } from "@/components/ui/Container";
-import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { Section, SectionHeader } from "@/components/ui/Section";
 import { ButtonLink } from "@/components/ui/Button";
 import { PackageCard } from "@/components/cards/PackageCard";
@@ -50,30 +50,18 @@ export default async function LuxuryPage() {
 
   return (
     <>
-      <section className="relative isolate overflow-hidden bg-navy text-white">
-        <div className="absolute inset-0 -z-10">
-          <Image
-            src="https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&w=2400&q=85"
-            alt=""
-            fill
-            priority
-            sizes="100vw"
-            className="object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-navy/65 to-navy/95" />
-        </div>
+      <HeroSection>
+        <HeroBackground src="https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&w=2400&q=85" />
         <Container>
-          <div className="pt-8">
-            <Breadcrumb items={[{ label: "Home", href: "/" }, { label: "Luxury Escapes" }]} invert />
-          </div>
-          <div className="max-w-2xl pb-20 pt-8 sm:pb-28 sm:pt-14">
-            <span className="inline-flex items-center gap-2 rounded-pill border border-gold/30 bg-gold/10 px-3 py-1.5 text-[11px] font-medium uppercase tracking-[0.14em] text-gold">
+          <HeroBreadcrumb items={[{ label: "Home", href: "/" }, { label: "Luxury Escapes" }]} />
+          <div className="max-w-2xl">
+            <span className="inline-flex items-center gap-2 rounded-pill border border-gold/30 bg-gold/10 px-3 py-1.5 text-[11px] font-medium uppercase tracking-[0.14em] text-gold drop-shadow-md">
               <span className="inline-flex h-1.5 w-1.5 rounded-full bg-gold" aria-hidden /> Exclusive
             </span>
-            <h1 className="mt-5 font-display text-[clamp(2.25rem,5vw,3.75rem)] leading-tight tracking-tight text-balance">
+            <h1 className="mt-5 font-display text-[clamp(2.25rem,5vw,3.75rem)] leading-tight tracking-tight text-balance drop-shadow-lg">
               Luxury without performance.
             </h1>
-            <p className="mt-6 max-w-xl text-[16px] leading-relaxed text-white/75">
+            <p className="mt-6 max-w-xl text-[16px] leading-relaxed text-white/90 drop-shadow-md">
               Service that's felt, not announced. Properties chosen for the quality of their morning light, not
               the number of stars on their website. A small portfolio, vetted obsessively.
             </p>
@@ -83,7 +71,7 @@ export default async function LuxuryPage() {
             </div>
           </div>
         </Container>
-      </section>
+      </HeroSection>
 
       <Section tone="gold-light" pad="default">
         <Container>

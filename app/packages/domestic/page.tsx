@@ -45,7 +45,7 @@ export default async function DomesticListingPage() {
 
   return (
     <>
-      <section className="bg-cream pt-8 pb-12 lg:pt-16 lg:pb-20">
+      <section className="bg-cream pt-28 pb-12 lg:pt-32 lg:pb-20">
         <Container>
           <Breadcrumb items={breadcrumbs} />
           <div className="mt-12 grid gap-12 lg:grid-cols-[1.2fr,1fr] lg:items-center">

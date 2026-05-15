@@ -48,10 +48,10 @@ export function EnquiryForm() {
 
   if (state === "sent") {
     return (
-      <div className="rounded-xl border border-success/30 bg-success-bg p-8 text-center">
-        <CheckCircle2 className="mx-auto h-10 w-10 text-success" aria-hidden />
-        <h2 className="mt-4 font-display text-[24px] text-ink">Your enquiry is with a specialist.</h2>
-        <p className="mx-auto mt-3 max-w-md text-[14px] leading-relaxed text-ink-secondary">
+      <div className="rounded-xl border border-white/20 bg-white/10 p-8 text-center backdrop-blur-xl shadow-[0_8px_32px_rgba(0,0,0,0.15)]">
+        <CheckCircle2 className="mx-auto h-10 w-10 text-gold drop-shadow-md" aria-hidden />
+        <h2 className="mt-4 font-display text-[24px] text-white drop-shadow-md">Your enquiry is with a specialist.</h2>
+        <p className="mx-auto mt-3 max-w-md text-[14px] leading-relaxed text-white/80 drop-shadow-sm">
           You'll hear from us within four working hours — by email and WhatsApp, in case one is easier to read.
         </p>
       </div>
@@ -61,7 +61,7 @@ export function EnquiryForm() {
   return (
     <form
       onSubmit={onSubmit}
-      className="rounded-xl border border-line bg-white p-7 shadow-card sm:p-9"
+      className="rounded-xl border border-white/20 bg-white/10 p-7 shadow-[0_8px_32px_rgba(0,0,0,0.15)] backdrop-blur-xl sm:p-9"
       aria-label="Enquiry form"
     >
       <div className="grid gap-5 sm:grid-cols-2">
@@ -128,13 +128,13 @@ export function EnquiryForm() {
         </Field>
       </div>
 
-      <label className="mt-5 flex items-start gap-3 text-[12px] text-ink-secondary">
-        <input type="checkbox" defaultChecked className="mt-0.5 h-4 w-4 rounded border-line text-teal focus:ring-teal" />
+      <label className="mt-5 flex items-start gap-3 text-[12px] text-white/80">
+        <input type="checkbox" defaultChecked className="mt-0.5 h-4 w-4 rounded border-white/20 bg-white/5 text-teal focus:ring-teal focus:ring-offset-0" />
         <span>I'd like to receive occasional travel inspiration and off-season fares. Never spam.</span>
       </label>
 
       <div className="mt-7 flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
-        <p className="text-[12px] text-ink-muted">
+        <p className="text-[12px] text-white/60">
           A specialist replies within four working hours. No charge until you approve a proposal.
         </p>
         <button
@@ -159,17 +159,25 @@ export function EnquiryForm() {
           width: 100%;
           height: 44px;
           padding: 0 14px;
-          border: 1px solid var(--tvv-border);
+          border: 1px solid rgba(255, 255, 255, 0.2);
           border-radius: 10px;
-          background: var(--tvv-white);
-          color: var(--tvv-text-primary);
+          background: rgba(255, 255, 255, 0.05);
+          color: white;
           font-size: 14px;
           outline: none;
-          transition: border-color 150ms ease, box-shadow 150ms ease;
+          transition: border-color 150ms ease, box-shadow 150ms ease, background 150ms ease;
+        }
+        :global(.input::placeholder) {
+          color: rgba(255, 255, 255, 0.4);
+        }
+        :global(.input option) {
+          background: var(--tvv-navy);
+          color: white;
         }
         :global(.input:focus) {
-          border-color: var(--tvv-teal);
-          box-shadow: 0 0 0 3px rgba(11, 122, 117, 0.12);
+          border-color: rgba(255, 255, 255, 0.4);
+          background: rgba(255, 255, 255, 0.1);
+          box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.1);
         }
         :global(textarea.input) {
           height: auto;
@@ -183,9 +191,9 @@ export function EnquiryForm() {
 function Field({ label, required, children }: { label: string; required?: boolean; children: React.ReactNode }) {
   return (
     <label className="block">
-      <span className="mb-1.5 block text-label uppercase text-ink-secondary">
+      <span className="mb-1.5 block text-label uppercase text-white/70">
         {label}
-        {required && <span className="ml-1 text-danger">*</span>}
+        {required && <span className="ml-1 text-gold">*</span>}
       </span>
       {children}
     </label>

@@ -1,6 +1,6 @@
 import { Phone, Mail, MessageCircle, MapPin } from "lucide-react";
 import { Container } from "@/components/ui/Container";
-import { Breadcrumb } from "@/components/ui/Breadcrumb";
+import { HeroSection, HeroBackground, HeroBreadcrumb } from "@/components/ui/HeroLayout";
 import { Section, SectionHeader } from "@/components/ui/Section";
 import { EnquiryForm } from "@/components/sections/EnquiryForm";
 import { SITE, buildMetadata } from "@/lib/seo";
@@ -15,17 +15,18 @@ export const metadata = buildMetadata({
 export default function ContactPage() {
   return (
     <>
-      <section className="bg-cream pt-10 pb-12">
+      <HeroSection tall>
+        <HeroBackground src="https://images.unsplash.com/photo-1544809837-f81d11bb74cd?auto=format&fit=crop&w=2400&q=85" />
         <Container>
-          <Breadcrumb items={[{ label: "Home", href: "/" }, { label: "Plan my journey" }]} />
+          <HeroBreadcrumb items={[{ label: "Home", href: "/" }, { label: "Plan my journey" }]} />
           <div className="mt-10 grid gap-12 lg:grid-cols-[1.3fr,1fr]">
             <div>
-              <p className="text-label uppercase text-teal">Plan my journey</p>
-              <h1 className="mt-3 font-display text-[clamp(2rem,4.5vw,3rem)] leading-[1.05] tracking-tight text-balance text-ink">
+              <p className="text-label uppercase text-gold drop-shadow-md">Plan my journey</p>
+              <h1 className="mt-3 font-display text-[clamp(2rem,4.5vw,3rem)] leading-[1.05] tracking-tight text-balance drop-shadow-lg">
                 Tell us how you travel.
-                <span className="block text-teal/90">We'll do the rest, quietly.</span>
+                <span className="block text-white/80">We'll do the rest, quietly.</span>
               </h1>
-              <p className="mt-5 max-w-xl text-[16px] leading-relaxed text-ink-secondary">
+              <p className="mt-5 max-w-xl text-[16px] leading-relaxed text-white/90 drop-shadow-md">
                 A short form, a specialist who reads it carefully, and a written proposal in your inbox within
                 four working hours. No call-centre, no script, no obligation.
               </p>
@@ -60,23 +61,23 @@ export default function ContactPage() {
                 />
               </dl>
 
-              <div className="mt-10 rounded-lg border border-line bg-white p-6">
-                <p className="text-label uppercase text-teal">What happens next</p>
-                <ol className="mt-4 space-y-3 text-[14px] text-ink-secondary">
-                  <li><strong className="text-ink">1.</strong> A specialist reads your enquiry (a human, in India).</li>
-                  <li><strong className="text-ink">2.</strong> You'll receive a written proposal within four working hours.</li>
-                  <li><strong className="text-ink">3.</strong> We iterate — no pressure, no obligation.</li>
-                  <li><strong className="text-ink">4.</strong> Once you approve, a 25% deposit confirms your trip.</li>
+              <div className="mt-10 rounded-lg border border-white/20 bg-white/5 p-6 backdrop-blur-md">
+                <p className="text-label uppercase text-gold drop-shadow-md">What happens next</p>
+                <ol className="mt-4 space-y-3 text-[14px] text-white/80">
+                  <li><strong className="text-white">1.</strong> A specialist reads your enquiry (a human, in India).</li>
+                  <li><strong className="text-white">2.</strong> You'll receive a written proposal within four working hours.</li>
+                  <li><strong className="text-white">3.</strong> We iterate — no pressure, no obligation.</li>
+                  <li><strong className="text-white">4.</strong> Once you approve, a 25% deposit confirms your trip.</li>
                 </ol>
               </div>
             </div>
 
-            <div className="lg:sticky lg:top-24 lg:self-start">
+            <div className="lg:sticky lg:top-28 lg:self-start">
               <EnquiryForm />
             </div>
           </div>
         </Container>
-      </section>
+      </HeroSection>
 
       <Section tone="navy" pad="tight" className="overflow-hidden">
         <div className="grain absolute inset-0 pointer-events-none" aria-hidden />
@@ -108,21 +109,21 @@ function ContactRow({
 }) {
   const content = (
     <div className="flex items-start gap-4">
-      <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-teal-light text-teal">
-        <Icon className="h-4 w-4" aria-hidden />
+      <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white/10 text-white border border-white/20 backdrop-blur-sm shadow-[0_0_15px_rgba(255,255,255,0.05)]">
+        <Icon className="h-4 w-4 drop-shadow-sm" aria-hidden />
       </span>
       <div>
-        <dt className="text-label uppercase text-ink-muted">{title}</dt>
-        <dd className="mt-1 text-[15px] font-medium text-ink">{value}</dd>
-        {note && <p className="mt-0.5 text-[11px] text-ink-muted">{note}</p>}
+        <dt className="text-label uppercase text-white/70">{title}</dt>
+        <dd className="mt-1 text-[15px] font-medium text-white drop-shadow-sm">{value}</dd>
+        {note && <p className="mt-0.5 text-[11px] text-white/50">{note}</p>}
       </div>
     </div>
   );
   return href ? (
-    <a href={href} className="block rounded-md p-1 transition-colors hover:bg-surface">
+    <a href={href} className="block rounded-md p-2 transition-colors hover:bg-white/5 border border-transparent hover:border-white/10">
       {content}
     </a>
   ) : (
-    <div className="rounded-md p-1">{content}</div>
+    <div className="rounded-md p-2">{content}</div>
   );
 }
